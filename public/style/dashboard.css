@@ -1,0 +1,340 @@
+/* RESET PODSTAWOWYCH STYLI */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+  }
+  
+  /* SIDEBAR */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 240px;
+    height: 100vh;
+    background-color: #fff;
+    border-right: 1px solid #eaeaea;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  
+  /* Logo i nazwa */
+  .logoContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    object-fit: cover;
+  }
+  
+  .brandName {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  /* Każda sekcja menu */
+  .menuSection {
+    margin-bottom: 30px;
+  }
+  
+  .sectionTitle {
+    font-size: 14px;
+    font-weight: 600;
+    color: #666;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Lista linków */
+  .navList {
+    list-style: none;
+  }
+  
+  .navItem {
+    margin-bottom: 8px;
+  }
+  
+  /* Linki w menu */
+  .navItem a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    font-size: 15px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .navItem a:hover {
+    background-color: #f1f3f5;
+  }
+  
+  /* Ikony */
+  .navItem a .material-icons {
+    font-size: 20px;
+    margin-right: 10px;
+    color: #757575;
+    transition: color 0.3s;
+  }
+  
+  /* Aktywna pozycja menu */
+  .navItem.active a {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .navItem.active a .material-icons {
+    color: #fff;
+  }
+  
+  /* GŁÓWNA TREŚĆ */
+  .content {
+    margin-left: 240px; /* aby nie nachodziło na sidebar */
+    padding: 20px;
+  }
+
+  header{
+    margin-left: 240px;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom:2px solid #dcdce9;
+  }
+  .searchAndSwitch{
+    width: 80%;
+    height: 100%;
+    display: flex;
+    border-right: 2px solid #dcdce9;
+    justify-content: space-between;
+    align-items: center;
+   
+  }
+  .searchbar{
+    margin-left: 20px;
+  }
+  .searchInputWrapper {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    pointer-events: none; 
+  }
+  
+  .searchInputWrapper input {
+    padding-left: 36px; 
+    height: 36px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+  }
+  /* Styl kontenera przełącznika */
+.themeSwitch {
+    display: inline-flex;
+    background-color: #f1f3f5;      /* tło "pigułki" */
+    border-radius: 20px;           /* zaokrąglone rogi */
+    padding: 4px;
+    margin-right: 20px;
+    align-items: center;
+    gap: 2px;                      /* odstęp między przyciskami */
+  }
+  
+  /* Styl poszczególnych przycisków (Light / Dark) */
+  .themeOption {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-family: inherit;          /* dziedziczenie czcionki */
+    padding: 6px 12px;
+    border-radius: 16px;           /* zaokrąglone rogi przycisku */
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  /* Wygląd aktywnego przycisku */
+  .themeOption.active {
+    background-color: #fff;        /* wyróżnienie aktywnego przycisku */
+    color: #007bff;               /* kolor tekstu aktywnego */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  /* Opcjonalnie zmiana koloru przy hoverze */
+  .themeOption:hover {
+    background-color: #e9ecef;
+  }
+  
+  /* Jeśli chcesz, żeby nie zmieniać tła przy aktywnym hoverze: */
+  .themeOption.active:hover {
+    background-color: #fff;
+  }
+  .accountDetails {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Odstęp między elementami */
+  }
+  
+
+  
+  /* Zdjęcie profilowe */
+  .accountDetails img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  /* Tekst z imieniem użytkownika */
+  .accountDetails p {
+    font-weight: 500;
+    margin: 0; /* Usunięcie ewentualnych domyślnych marginesów */
+  }
+  
+  /* Przycisk z datą */
+  .dateButton {
+    border: none;
+    background-color: #f1f3f5;
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-family: inherit; /* Dziedziczy czcionkę z rodzica */
+    transition: background-color 0.3s;
+  }
+  
+  .dateButton:hover {
+    background-color: #e9ecef;
+  }
+
+  .date{
+    margin-right: 15px;
+  }
+  /* Główny kontener, odsunięty w prawo o szerokość sidebaru */
+.dashboardMain {
+    margin-left: 240px; /* Jeśli masz sidebar o szerokości 240px */
+    padding: 20px;
+    background-color: #f8f9fa;
+    min-height: 100vh; /* aby rozciągało się na całą wysokość okna */
+    font-family: 'Poppins', sans-serif; /* przykładowa czcionka */
+  }
+  
+  /* Nagłówek z tytułem, filtrami i przyciskiem Import */
+  .dashboardHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* aby ładnie się zawijało na węższych ekranach */
+  }
+  
+  /* Lewa część: tytuł i opis */
+  .dashboardTitle h1 {
+    font-size: 24px;
+    margin-bottom: 5px;
+  }
+  
+  .dashboardTitle p {
+    color: #666;
+    margin-bottom: 0;
+  }
+  
+  /* Sekcja filtrów */
+  .filtersContainer .extraFilters{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* odstęp między polami */
+    flex-wrap: wrap; /* zawijanie na mniejszych ekranach */
+    max-width: 650px; /* ograniczenie szerokości sekcji filtrów */
+  }
+  
+  /* Pola input i label w filtrach */
+  .filtersContainer label {
+    font-weight: 500;
+    padding: 10px;
+    font-size: 14px;
+  }
+  
+  .filtersContainer select{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .extraFilters label {
+    font-weight: 500;
+    padding: 10px;
+    font-size: 14px;
+  }
+  
+  .extraFilters select{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  /* Przycisk Import */
+  .importBtn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s;
+  }
+  
+  .importBtn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Sekcja 'Available Cars' (na razie pusta) */
+  .announcements {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  }
+  
+  .announcements h3 {
+    margin-bottom: 15px;
+    font-size: 18px;
+  }
+  .submitBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* odstęp między ikoną a tekstem */
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background-color 0.3s;
+  }
+  
+  .submitBtn:hover {
+    background-color: #0056b3;
+  }

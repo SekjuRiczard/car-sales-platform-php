@@ -1,0 +1,119 @@
+/* Reset podstawowych styli */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+/* Styl nagłówka */
+.headerIndex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1f497d;
+  padding: 10px 20px;
+  color: #fff;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.headerIndex a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 15px;
+  font-weight: bold;
+}
+
+.headerIndex a:hover {
+  text-decoration: underline;
+}
+
+/* Główna zawartość */
+main {
+  padding: 40px 20px;
+}
+
+/* Kontener formularza filtrów - wyśrodkowany */
+.sellingFilters {
+  max-width: 800px;
+  margin: 0 auto; /* centrowanie */
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Styl formularza */
+.sellingFilters form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.filtersFirstRow,
+.filtersSecondRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 15px;
+}
+
+.filtersFirstRow label,
+.filtersSecondRow label {
+  min-width: 100px;
+  font-weight: bold;
+}
+
+.filtersFirstRow select,
+.filtersSecondRow select {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Przycisk wyszukiwania */
+.filtersSecondRow button {
+  padding: 10px 20px;
+  background-color: #1f497d;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.filtersSecondRow button:hover {
+  background-color: #16315c;
+}
+
+/* Sekcja wyróżnionych ofert */
+.highLightedOffers {
+  margin-top: 30px;
+}
+
+.highLightedOffers h1 {
+  margin-bottom: 15px;
+}
+
+/* Styl stopki */
+footer {
+  background-color: #1f497d;
+  color: #fff;
+  text-align: center;
+  padding: 15px 20px;
+  margin-top: 40px;
+}
