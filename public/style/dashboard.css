@@ -338,3 +338,70 @@
   .submitBtn:hover {
     background-color: #0056b3;
   }
+
+  .annoucment {
+    /* Ogólny wygląd kafelka */
+    border: 1px solid #ccc;            /* Delikatniejsza ramka (zamiast czarnej) */
+    border-radius: 8px;                /* Zaokrąglenie rogów */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15); /* Delikatny cień */
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    min-width: 300px;                  /* Opcjonalne minimum, żeby kafelek nie był zbyt wąski */
+    background-color: #fff;            /* Białe tło, by cień był lepiej widoczny */
+    margin: 16px;                      /* Odstęp od innych elementów */
+    overflow: hidden;                  /* Ukrycie ewentualnych elementów wystających */
+  }
+  
+  .annoucmentMain {
+    /* Górna część kafelka (zdjęcie + nazwa auta) */
+    display: flex;
+    flex-direction: column;
+   
+    align-items: center;               /* Wyrównanie w poziomie na środek */
+    padding: 8px;
+    border-bottom: 1px solid #eee;     /* Linia oddzielająca od opisu */
+  }
+  
+  .annoucmentMain img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;  /* Zmiana z cover na contain, aby zdjęcie się skalowało bez ucinania */
+    margin-bottom: 8px;
+  }
+  
+  .annoucmentMain h3 {
+    /* Nazwa / model auta */
+    margin: 0;
+    font-size: 1.2rem;
+    text-align: center;
+  }
+  
+  .annoucmentDesc {
+    /* Środkowa część (Brand, Body, Fuel) */
+    display: flex;
+    justify-content: space-around;
+    padding: 8px;
+    border-bottom: 1px solid #eee;     /* Oddzielenie od sekcji ceny */
+  }
+  
+  .annoucmentDesc p {
+    margin: 4px;
+    font-size: 0.95rem;
+  }
+  
+  .annoucmentPrice {
+    /* Dolna część (cena) */
+    padding: 8px;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+  }
+  
+  .annoucmentPrice h2 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: #333;
+    font-weight: bold;
+  }
+  

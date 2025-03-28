@@ -130,7 +130,7 @@
         <!-- Zdjęcie użytkownika -->
         <img src="assets/logo.png" alt="Profile Picture" />
         <!-- Nazwa użytkownika -->
-        <p>Hello User</p>
+        <p id="usernameContainer"></p>
         <!-- Przycisk z datą -->
         <div class="date">25 March</div>
       </div>
@@ -147,9 +147,16 @@
         </div>
 
         <!-- Filtry (lokalizacja, daty, godziny) -->
-        <div class="filtersContainer">
+        <form class="filtersContainer">
           <label for="marka">Brand:</label>
-          <select name="marka" id="marka"></select>
+
+          <select name="marka" id="marka">
+            <?php foreach($carBrands as $brand): ?>
+              <option value="<?php echo htmlspecialchars($brand['id']); ?>">
+                <?php echo htmlspecialchars($brand['name']); ?>
+              </option>
+            <?php endforeach; ?>
+          </select>
 
           <label for="model">Model:</label>
           <select name="model" id="model"></select>
@@ -179,9 +186,7 @@
             <select name="transmision" id="transmision"></select>
 
             </div>
-        </div>
-
-          <button class="submitBtn" type="submit">
+            <button class="submitBtn" type="submit">
             <span class="material-symbols-outlined">directions_car</span>
             Update Offers
           </button>
@@ -193,12 +198,33 @@
           </button>
         </div>
 
+        </form>
+
+       
         
       <!-- Sekcja dostępnych samochodów -->
       <div class="announcements">
         <h3>Available Cars</h3>
-        <!-- Tutaj będą oferty samochodów -->
+              <div class="annoucment">
+
+                <div class="annoucmentMain">
+                  <img src="assets/audi1.jpg" alt="car photo">
+                  <h3>Car model</h3>
+                </div>
+
+                <div class="annoucmentDesc">
+                  <p>Brand: <strong>Brand</strong></p>
+                  <p>Body: <strong>Body</strong></p>
+                  <p>Fuel: <strong>Fuel</strong></p>
+                </div>
+
+                <div class="annoucmentPrice">
+                  <h2>Price <strong>200.000</strong> $</h2>
+                  <button class="submitBtn">Check Details</button>
+                </div>
+              </div>
       </div>
+      
     </main>
 
     <!-- Footer -->

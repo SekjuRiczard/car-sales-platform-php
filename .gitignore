@@ -1,0 +1,14 @@
+# Composer
+/vendor/
+composer.lock
+composer.phar
+
+# Dotenv
+.env
+
+# Apache
+.htaccess
+
+# Systemowe
+.DS_Store
+Thumbs.db

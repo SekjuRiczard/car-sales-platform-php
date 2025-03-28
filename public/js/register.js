@@ -4,12 +4,11 @@ const messageDiv = document.getElementById('message');
 registerForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     
-    // Czyścimy poprzednie komunikaty
     messageDiv.textContent = '';
     
     try {
       const formData = new FormData(registerForm);
-      const response = await fetch('back/register.php', {
+      const response = await fetch('/register/saveUser', {
         method: 'POST',
         body: formData
       });
@@ -18,7 +17,7 @@ registerForm.addEventListener('submit', async (e) => {
         throw new Error(`Błąd HTTP: ${response.status}`);
       }
       
-      // Pobieramy surową odpowiedź
+     
       const responseText = await response.text();
       console.log("Surowa odpowiedź:", responseText);
       
@@ -28,11 +27,19 @@ registerForm.addEventListener('submit', async (e) => {
       } catch (parseError) {
         throw new Error("Odpowiedź nie jest poprawnym JSON-em: " + responseText);
       }
+      data = JSON.parse(responseText);
+
+      
+      if (data.token) {
+        localStorage.setItem('auth_token', data.token);
+      }
+      if (data.username) {
+        localStorage.setItem('username', data.username);
+      }
       
       console.log("Parsowane dane:", data);
-      messageDiv.style.color = data.status === 'success' ? 'green' : 'red';
-      messageDiv.textContent = data.message;
-  
+     
+      window.location.href = '/dashboard';
     } catch (error) {
       console.error("Fetch error:", error);
       messageDiv.style.color = 'red';
