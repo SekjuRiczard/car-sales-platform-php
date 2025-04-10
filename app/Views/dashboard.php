@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <!-- Style i fonty -->
     <link rel="stylesheet" type="text/css" href="style/dashboard.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -113,6 +114,7 @@
     <!-- Header -->
     <header>
       <div class="searchAndSwitch">
+        <!-- Pasek wyszukiwania -->
         <div class="searchbar">
           <div class="searchInputWrapper">
             <span class="material-icons search-icon">search</span>
@@ -120,116 +122,177 @@
           </div>
           <button>Search</button>
         </div>
-
+        <!-- Przełącznik motywów -->
         <div class="themeSwitch">
           <button class="themeOption active" data-theme="light">Light</button>
           <button class="themeOption" data-theme="dark">Dark</button>
         </div>
       </div>
+      <!-- Szczegóły konta -->
       <div class="accountDetails">
-        <!-- Zdjęcie użytkownika -->
         <img src="assets/logo.png" alt="Profile Picture" />
-        <!-- Nazwa użytkownika -->
         <p id="usernameContainer"></p>
-        <!-- Przycisk z datą -->
         <div class="date">25 March</div>
       </div>
     </header>
 
     <!-- Main content -->
     <main class="dashboardMain">
-      <!-- Górny kontener z nagłówkiem, filtrami i przyciskiem -->
+      <!-- Dashboard Header z filtrami -->
       <div class="dashboardHeader">
-        <!-- Tytuł i krótki opis -->
+        <!-- Tytuł i opis dashboardu -->
         <div class="dashboardTitle">
           <h1>Dashboard</h1>
           <p>Filters</p>
         </div>
 
-        <!-- Filtry (lokalizacja, daty, godziny) -->
         <form class="filtersContainer">
-          <label for="marka">Brand:</label>
+  <!-- Brand -->
+  <select name="brand" id="brand">
+    <option value="" disabled selected hidden>Brand</option>
+    <!-- Dalsze opcje ładujesz w JS (loadCarBrands) lub statycznie -->
+  </select>
 
-          <select name="marka" id="marka">
-            <?php foreach($carBrands as $brand): ?>
-              <option value="<?php echo htmlspecialchars($brand['id']); ?>">
-                <?php echo htmlspecialchars($brand['name']); ?>
-              </option>
-            <?php endforeach; ?>
-          </select>
+  <!-- Model -->
+  <select name="model" id="model">
+    <option value="" disabled selected hidden>Model</option>
+  </select>
 
-          <label for="model">Model:</label>
-          <select name="model" id="model"></select>
+   <!-- GENERATION -->
+   <select name="generation" id="generation">
+    <option value="" disabled selected hidden>Generation</option>
+  </select>
 
-          <label for="cenaDo">Price from:</label>
-          <select name="priceFrom" id="priceFrom"></select>
+  <!-- Price from -->
+  <select name="priceFrom" id="priceFrom">
+    <option value="" disabled selected hidden>Price from</option>
+    <?php
+      for ($i = 0; $i <= 1000000;) {
+        echo "<option value=\"$i\">$i</option>";
+        if ($i < 100000) {
+          $i += 10000;
+        } else {
+          $i += 50000;
+        }
+      }
+    ?>
+  </select>
 
-          <label for="cenaDo">Price to:</label>
-          <select name="priceTo" id="priceTo"></select>
+  <!-- Price to -->
+  <select name="priceTo" id="priceTo">
+    <option value="" disabled selected hidden>Price to</option>
+    <?php
+      for ($i = 0; $i <= 1000000;) {
+        echo "<option value=\"$i\">$i</option>";
+        if ($i < 100000) {
+          $i += 10000;
+        } else {
+          $i += 50000;
+        }
+      }
+    ?>
+  </select>
 
-          <label for="cenaDo">Fuel type:</label>
-          <select name="fuelType" id="fuelType"></select>
+  <!-- Fuel Type -->
+  <select name="fuelType" id="fuelType">
+    <option value="" disabled selected hidden>Fuel type</option>
+    <option value="Petrol">Petrol</option>
+    <option value="Diesel">Diesel</option>
+    <option value="Electric">Electric</option>
+    <option value="Hybrid">Hybrid</option>
+  </select>
 
-            <!-- Dodatkowe filtry - początkowo ukryte -->
-            <div id="extraFilters" class="extraFilters" style="display: none;">
+  <!-- Year from -->
+  <select name="yearFrom" id="yearFrom">
+    <option value="" disabled selected hidden>Year from</option>
+    <?php 
+      for ($i = 1950; $i <= 2025; $i++ ) {
+        echo "<option value=\"$i\">$i</option>";
+      }
+    ?>
+  </select>
 
-            <label for="yearFrom">Year from:</label>
-            <select name="yearFrom" id="yearFrom"></select>
+  <!-- Year to -->
+  <select name="yearTo" id="yearTo">
+    <option value="" disabled selected hidden>Year to</option>
+    <?php 
+      for ($i = 1950; $i <= 2025; $i++ ) {
+        echo "<option value=\"$i\">$i</option>";
+      }
+    ?>
+  </select>
 
-            <label for="yearTo">Year to:</label>
-            <select name="yearTo" id="yearTo"></select>
+  <!-- Mileage From -->
+  <select name="mileageFrom" id="mileageFrom">
+    <option value="" disabled selected hidden>Mileage from</option>
+    <?php
+      for ($i = 0; $i <= 1000000;) {
+        echo "<option value=\"$i\">$i</option>";
+        if ($i < 100000) {
+          $i += 10000;
+        } else {
+          $i += 100000;
+        }
+      }
+    ?>
+  </select>
 
-            <label for="mileage">Mileage:</label>
-            <select name="mileage" id="mileage"></select>
+  <!-- Mileage To -->
+  <select name="mileageTo" id="mileageTo">
+    <option value="" disabled selected hidden>Mileage to</option>
+    <?php
+      for ($i = 0; $i <= 1000000;) {
+        echo "<option value=\"$i\">$i</option>";
+        if ($i < 100000) {
+          $i += 10000;
+        } else {
+          $i += 100000;
+        }
+      }
+    ?>
+  </select>
 
-            <label for="transmision">Transmision:</label>
-            <select name="transmision" id="transmision"></select>
+  <!-- Transmission -->
+  <select name="transmision" id="transmision">
+    <option value="" disabled selected hidden>Transmission</option>
+    <option value="Automatic">Automatic</option>
+    <option value="Manual">Manual</option>
+  </select>
 
-            </div>
-            <button class="submitBtn" type="submit">
-            <span class="material-symbols-outlined">directions_car</span>
-            Update Offers
-          </button>
+  <!-- Przycisk -->
+  <button class="submitBtn" type="submit">
+    <span class="material-symbols-outlined">directions_car</span>
+    Update Offers
+  </button>
+</form>
 
-          <!-- Przycisk do rozwijania dodatkowych filtrów -->
-          <button id="moreFiltersBtn" class="submitBtn" type="button">
-            <span class="material-symbols-outlined">filter_list</span>
-            More Filters
-          </button>
-        </div>
+      </div>
 
-        </form>
-
-       
-        
-      <!-- Sekcja dostępnych samochodów -->
+      <!-- Sekcja ogłoszeń -->
       <div class="announcements">
         <h3>Available Cars</h3>
-              <div class="annoucment">
-
-                <div class="annoucmentMain">
-                  <img src="assets/audi1.jpg" alt="car photo">
-                  <h3>Car model</h3>
-                </div>
-
-                <div class="annoucmentDesc">
-                  <p>Brand: <strong>Brand</strong></p>
-                  <p>Body: <strong>Body</strong></p>
-                  <p>Fuel: <strong>Fuel</strong></p>
-                </div>
-
-                <div class="annoucmentPrice">
-                  <h2>Price <strong>200.000</strong> $</h2>
-                  <button class="submitBtn">Check Details</button>
-                </div>
-              </div>
+        <div class="annoucment">
+          <div class="annoucmentMain">
+            <img src="assets/audi1.jpg" alt="car photo" />
+            <h3>Car model</h3>
+          </div>
+          <div class="annoucmentDesc">
+            <p>Brand: <strong>Brand</strong></p>
+            <p>Body: <strong>Body</strong></p>
+            <p>Fuel: <strong>Fuel</strong></p>
+          </div>
+          <div class="annoucmentPrice">
+            <h2>Price <strong>200.000</strong> $</h2>
+            <button class="submitBtn">Check Details</button>
+          </div>
+        </div>
       </div>
-      
     </main>
 
     <!-- Footer -->
     <footer></footer>
 
+    <!-- Skrypty JS -->
     <script src="js/dashboard.js"></script>
   </body>
 </html>

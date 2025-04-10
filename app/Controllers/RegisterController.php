@@ -5,7 +5,7 @@ use App\Models\User;
 
 class RegisterController{
 
-    public function showRegister(){
+    public function index(){
         require __DIR__ . '/../Views/register.php';
     }
 

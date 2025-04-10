@@ -2,6 +2,7 @@
     namespace App\Models;
     use App\Core\Database;
     use Firebase\JWT\JWT;
+    use PDO;
 
     class User{
         private $id;
@@ -58,13 +59,14 @@
                     'iat' => $issuedAt,
                     'exp' => $issuedAt + 3600,
                     'userId' => $userId,
+                    'username' => $username,
                     'email' => $email
                 ];
         
                 $jwtSecret = $_ENV['JWT_SECRET'];
                 $jwt = JWT::encode($payload, $jwtSecret, 'HS256');
         
-                echo json_encode(['success' => true, 'username'=>$username ,'token' => $jwt]);
+                echo json_encode(['success' => true, 'token' => $jwt , 'username' => $username]);
                 exit;
             } else {
                 echo json_encode(['success' => false, 'message' => 'Something went wrong during registration']);
@@ -72,6 +74,37 @@
             }
         }
         
+        public function loginUser($username, $password) {
+            $query = "SELECT * FROM users WHERE username = :username";
+            $stmt = $this->con->prepare($query);
+            $stmt->bindParam(':username', $username);
+            $stmt->execute();
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+         
+            if ($user) {
+                if (password_verify($password, $user['password'])) {
+                    $issuedAt = time();
+                    $userId = $this->con->lastInsertId();
+                    $payload = [
+                        'iat' => $issuedAt,
+                        'exp' => $issuedAt + 3600,
+                        'userId' => $userId,
+                        'username' => $user['username'],
+                        'email' => $user['email']
+                    ];
+                    $jwtSecret = $_ENV['JWT_SECRET'];
+                    $jwt = JWT::encode($payload, $jwtSecret, 'HS256');
+
+                    echo json_encode(['success' => true, 'token' => $jwt , 'username' => $user['username']]);
+
+                } else {
+                    echo json_encode(['success' => false, 'message' => 'Incorrect password']);
+                }
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Username does not exist']);
+            }
+        }
         
         
     }

@@ -9,13 +9,20 @@ $dotenv->load();
 $router = new AltoRouter();
 
 
-
+//Ladowanie stron
 $router->map('GET', '/', 'HomeController@index', 'home');
-$router->map('GET', '/login', 'LoginController@showLogin', 'login');
-$router->map('GET', '/register', 'RegisterController@showRegister', 'register');
-$router->map('POST','/register/saveUser','RegisterController@saveUser','saveUser'); //metoda rejestracji usera
+$router->map('GET', '/login', 'LoginController@index', 'login');
+$router->map('GET', '/register', 'RegisterController@index', 'register');
 $router->map('GET', '/dashboard', 'DashboardController@index', 'dashboard');
-
+//Logowanie i rejestracja
+$router->map('POST','/login/auth','LoginController@loginUser','loginUser');
+$router->map('POST','/register/saveUser','RegisterController@saveUser','saveUser');
+//Zarzadzanie filrami
+$router->map('GET','/getCarBrands','DashboardController@getCarBrands','getCarBrands');
+$router->map('GET','/getCarModels/[i:id]','DashboardController@getCarModels','getCarModels');
+$router->map('GET','/getModelGeneration/[i:id]','DashboardController@getModelGenerations','getCarGenerations');
+//Pobieranie ogloszen
+$router->map('GET','/getAllAdvertisements','DashboardController@getAllAdvertisements','getAllAdvertisements');
 $match = $router->match();
 
 if ($match) {
