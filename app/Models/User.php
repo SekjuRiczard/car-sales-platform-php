@@ -65,7 +65,17 @@
         
                 $jwtSecret = $_ENV['JWT_SECRET'];
                 $jwt = JWT::encode($payload, $jwtSecret, 'HS256');
-        
+                setcookie(
+                    'auth_token',
+                    $jwt,
+                    [
+                      'expires'  => time() + 3600, // ważny 1h
+                      'path'     => '/',
+                      'httponly' => true,
+                      // 'secure'=>true, // gdy HTTPS
+                      'samesite' => 'Lax',
+                    ]
+                  );
                 echo json_encode(['success' => true, 'token' => $jwt , 'username' => $username]);
                 exit;
             } else {
@@ -85,7 +95,7 @@
             if ($user) {
                 if (password_verify($password, $user['password'])) {
                     $issuedAt = time();
-                    $userId = $this->con->lastInsertId();
+                    $userId = $user['id'];
                     $payload = [
                         'iat' => $issuedAt,
                         'exp' => $issuedAt + 3600,
@@ -95,7 +105,17 @@
                     ];
                     $jwtSecret = $_ENV['JWT_SECRET'];
                     $jwt = JWT::encode($payload, $jwtSecret, 'HS256');
-
+                    setcookie(
+                        'auth_token',
+                        $jwt,
+                        [
+                          'expires'  => time() + 3600, // ważny 1h
+                          'path'     => '/',
+                          'httponly' => true,
+                          // 'secure'=>true, // gdy HTTPS
+                          'samesite' => 'Lax',
+                        ]
+                      );
                     echo json_encode(['success' => true, 'token' => $jwt , 'username' => $user['username']]);
 
                 } else {

@@ -1,6 +1,8 @@
 <?php
 session_start();
 require __DIR__ . '/../vendor/autoload.php';
+
+use App\Middleware\AuthMiddleware;
 use Dotenv\Dotenv;
 
 $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
@@ -14,6 +16,7 @@ $router->map('GET', '/', 'HomeController@index', 'home');
 $router->map('GET', '/login', 'LoginController@index', 'login');
 $router->map('GET', '/register', 'RegisterController@index', 'register');
 $router->map('GET', '/dashboard', 'DashboardController@index', 'dashboard');
+$router->map('GET', '/logout', 'LogoutController@index', 'logout');
 //Logowanie i rejestracja
 $router->map('POST','/login/auth','LoginController@loginUser','loginUser');
 $router->map('POST','/register/saveUser','RegisterController@saveUser','saveUser');
@@ -27,6 +30,25 @@ $match = $router->match();
 
 if ($match) {
    
+   
+
+   
+    // trasy publiczne
+    $public = ['home','login','register','loginUser','saveUser'];
+
+    // jeśli trasa *nie* jest publiczna → wymagamy ciasteczka
+    if (!in_array($match['name'], $public, true)) {
+        try {
+            $auth    = new AuthMiddleware();
+            $payload = $auth->handle();
+            // opcjonalnie zapisz do sesji
+            $_SESSION['user'] = (array)$payload;
+        } catch (Exception $e) {
+            // zamiast 401 JSON – przekieruj na login
+            header('Location: /login');
+            exit;
+        }
+    }
     list($controller, $method) = explode('@', $match['target']);
     $controllerClass = 'App\\Controllers\\' . $controller;
     if (class_exists($controllerClass) && method_exists($controllerClass, $method)) {
