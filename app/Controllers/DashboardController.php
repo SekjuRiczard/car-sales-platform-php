@@ -25,7 +25,7 @@
 
         public function getModelGenerations($id){
             $carGenerations = new CarGeneration();
-            $generations= $carGenerations->getGenerationsByModelId($id);
+            $generations = $carGenerations->getGenerationsByModelId($id);
             header('Content-Type: application/json');
             echo json_encode($generations);
         }

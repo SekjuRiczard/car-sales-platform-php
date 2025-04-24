@@ -20,6 +20,7 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
+    
   </head>
   <body>
     <!-- Sidebar -->
@@ -112,7 +113,7 @@
     </nav>
 
     <!-- Header -->
-    <header>
+      <header>
       <div class="searchAndSwitch">
         <!-- Pasek wyszukiwania -->
         <div class="searchbar">
@@ -122,19 +123,29 @@
           </div>
           <button>Search</button>
         </div>
+
+        <!-- Przycisk dodania ogłoszenia -->
+        <div class="advertisementButton">
+          <span class="material-symbols-outlined">campaign</span>
+          <p>Add advertisement</p>
+        </div>
+
         <!-- Przełącznik motywów -->
         <div class="themeSwitch">
           <button class="themeOption active" data-theme="light">Light</button>
           <button class="themeOption" data-theme="dark">Dark</button>
         </div>
       </div>
-      <!-- Szczegóły konta -->
+
+      <!-- Panel użytkownika (dla niezalogowanego) -->
       <div class="accountDetails">
-        <img src="assets/logo.png" alt="Profile Picture" />
-        <p id="usernameContainer"></p>
-        <div class="date">25 March</div>
+        <div class="accountDetailsGuest">
+          <span class="material-symbols-outlined icon">account_circle</span>
+          <a href="/login" class="loginButton">Log in</a>
+        </div>
       </div>
     </header>
+
 
     <!-- Main content -->
     <main class="dashboardMain">
@@ -146,7 +157,7 @@
           <p>Filters</p>
         </div>
 
-        <form class="filtersContainer">
+  <form class="filtersContainer">
   <!-- Brand -->
   <select name="brand" id="brand">
     <option value="" disabled selected hidden>Brand</option>

@@ -7,34 +7,39 @@ loginForm.addEventListener('submit', async (e) => {
 
     try{
         const formData = new FormData(loginForm);
-        const response = await fetch('/login/auth', {
+        const url = "/login/auth";
+        const response = await fetch(url , {
             method: 'POST',
             body: formData
-        })
-        if (!response.ok) {
-            throw new Error(`HTTP error: ${response.status}`);
-        }
-        const responseText = await response.text();
-        console.log("Raw response:", responseText);
-        let data;
-        try {
-            data = JSON.parse(responseText);
-        } catch (parseError) {
-            throw new Error("Response is not valid JSON: " + responseText);
-        }
-        data = JSON.parse(responseText);
+        });
 
-        console.log("Parsed data:", data);
-        if(data.token){
-            localStorage.setItem('auth_token', data.token);
+        if(!response.ok){
+            throw new Error(`Response status: ${response.status}`);
         }
-        if(data.username){
-            localStorage.setItem('username', data.username);
+
+        const data = await response.json();
+        console.log(data);
+        
+        if(data.token && data.username){
+            localStorage.setItem('auth_token',data.token);
+            localStorage.setItem('username',data.username);
+            window.location.href = '/dashboard';
+        }else{
+               // tutaj obsługujesz sytuację, gdy token NIE został zwrócony
+               messageDiv.style.color = 'red';
+
+               if (data.message) {
+                   messageDiv.textContent = `Błąd: ${data.message}`;
+               } else {
+                   messageDiv.textContent = 'Logowanie nie powiodło się. Spróbuj ponownie.';
+               }
+   
+               console.warn("Token nie został zwrócony! Debug info:", data);
+           }
+        }catch(error){
+            console.error("Blad fetch lub JSON",error);
+            messageDiv.style.color="red";
+            messageDiv.textContent = `Blad aplikacji ${error.message}`;
         }
-        window.location.href = '/dashboard';
-    }catch (error) {
-        console.error("Fetch error:", error);
-        messageDiv.style.color = 'red';
-        messageDiv.textContent = `Error: ${error.message}`;
-    }
-})
+    
+});

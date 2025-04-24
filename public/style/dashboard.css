@@ -123,8 +123,28 @@
     align-items: center;
    
   }
-  .searchbar{
-    margin-left: 20px;
+  .searchbar {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    gap: 0;
+  }
+  
+  .searchbar button {
+    height: 36px;
+    padding: 0 16px;
+    margin-left: -10px; /* przyciąga przycisk do inputa */
+    border: 1px solid #ccc;
+    border-left: none; /* łączymy wizualnie z inputem */
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .searchbar button:hover {
+    background-color: #e0e0e0;
   }
   .searchInputWrapper {
     position: relative;
@@ -145,6 +165,24 @@
     height: 36px;
     border: 1px solid #ccc;
     border-radius: 20px;
+  }
+
+  .advertisementButton {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0.6em 1.5em;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 9999px; /* miękko, nowocześnie */
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .advertisementButton:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.01);
   }
   /* Styl kontenera przełącznika */
 .themeSwitch {
@@ -185,46 +223,60 @@
   .themeOption.active:hover {
     background-color: #fff;
   }
-  .accountDetails {
-    display: flex;
-    align-items: center;
-    gap: 20px; /* Odstęp między elementami */
-  }
-  
 
-  
-  /* Zdjęcie profilowe */
-  .accountDetails img {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-  
-  /* Tekst z imieniem użytkownika */
-  .accountDetails p {
-    font-weight: 500;
-    margin: 0; /* Usunięcie ewentualnych domyślnych marginesów */
-  }
-  
-  /* Przycisk z datą */
-  .dateButton {
-    border: none;
-    background-color: #f1f3f5;
-    border-radius: 6px;
-    padding: 6px 12px;
-    cursor: pointer;
-    font-family: inherit; /* Dziedziczy czcionkę z rodzica */
-    transition: background-color 0.3s;
-  }
-  
-  .dateButton:hover {
-    background-color: #e9ecef;
-  }
+  /* Kontener */
+.accountDetails {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 20%;
+}
+.accountDetailsGuest{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  width: 80%;
+  height: 90%;
+  background-color: #f7f7f7; /* delikatne tło */
+  border: 1px solid #ddd;    /* jaśniejszy border */
+  border-radius: 10px;     /* zaokrąglenie w stylu kapsuły */
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
 
-  .date{
-    margin-right: 15px;
-  }
+/* Ikona użytkownika */
+.accountDetailsGuest .icon {
+  font-size: 36px;
+  color: #555;
+}
+
+/* Przycisk logowania */
+.loginButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  background-color: #2d7dff;
+  width: 55%;
+  height: 65%;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  color: white;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.loginButton:hover {
+  background-color: #1f5ed6;
+}
+
   /* Główny kontener, odsunięty w prawo o szerokość sidebaru */
 .dashboardMain {
     margin-left: 240px; /* Jeśli masz sidebar o szerokości 240px */
@@ -238,9 +290,10 @@
   .dashboardHeader {
     display: flex;
     align-items: center;
+    flex-direction: column;
     justify-content: space-around;
     background-color: #ffffff;
-    padding: 20px;
+    padding: 10px;
     border-radius: 8px;
     box-shadow: 0 1px 4px rgba(0,0,0,0.1);
     margin-bottom: 20px;
@@ -258,19 +311,23 @@
     display: grid;
     grid-template-columns: repeat(5, minmax(120px, 1fr));
     gap: 10px;
+    width: 90%;
     border-radius: 8px;
     padding: 20px;
     background-color: #fff;
+  
   }
   
   .filtersContainer select {
     border: none;
+    align-items: center;
     background-color: #e6e6f3;
     width: 100%;       /* Żeby wypełnić całą szerokość kolumny */
     height: 40px;
     border-radius: 4px;
     font-size: 14px;
     padding-left: 12px; /* Odstęp wewnętrzny */
+    padding-right: 12px;
   }
   
   /* Opcje w selectach */

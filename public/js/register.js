@@ -1,6 +1,10 @@
 const registerForm = document.getElementById('registerForm');
 const messageDiv = document.getElementById('message');
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 registerForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     
@@ -8,7 +12,9 @@ registerForm.addEventListener('submit', async (e) => {
     
     try {
       const formData = new FormData(registerForm);
-      const response = await fetch('/register/saveUser', {
+      const url='/register/saveUser';
+
+      const response = await fetch(url, {
         method: 'POST',
         body: formData
       });
@@ -18,28 +24,21 @@ registerForm.addEventListener('submit', async (e) => {
       }
       
      
-      const responseText = await response.text();
-      console.log("Surowa odpowiedź:", responseText);
+      const data = await response.json();
+      console.log("Register odpowiedź:", response.json , response.status);
       
-      let data;
-      try {
-        data = JSON.parse(responseText);
-      } catch (parseError) {
-        throw new Error("Odpowiedź nie jest poprawnym JSON-em: " + responseText);
-      }
-      data = JSON.parse(responseText);
-
-      
-      if (data.token) {
+      if (data.token && data.username) {
         localStorage.setItem('auth_token', data.token);
-      }
-      if (data.username) {
         localStorage.setItem('username', data.username);
+        window.location.href = '/dashboard';
+      }else{
+        messageDiv.style.color = "red";
+        if (data.message) {
+          messageDiv.textContent = `Błąd: ${data.message}`;
+       } else {
+          messageDiv.textContent = 'Rejestracja nie powiodła się. Spróbuj ponownie.';
       }
-      
-      console.log("Parsowane dane:", data);
-     
-      window.location.href = '/dashboard';
+      }
     } catch (error) {
       console.error("Fetch error:", error);
       messageDiv.style.color = 'red';
