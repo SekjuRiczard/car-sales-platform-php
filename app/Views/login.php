@@ -12,11 +12,11 @@
             <h2>Login</h2>
             <div class="input-group">
                 <label for="username">Username</label>
-                <input type="text" id="username" placeholder="Enter your username" required>
+                <input type="text" name="username" id="username" placeholder="Enter your username" required>
             </div>
             <div class="input-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Enter your password" required>
+                <input type="password" name="password" id="password" placeholder="Enter your password" required>
             </div>
             <div class="forgot-password">
                 <a href="#">Forgot password?</a>
@@ -24,7 +24,7 @@
             <div id="message"></div>
             <button type="submit" class="login-btn">Login</button>
             <div class="signup-link">
-                <p>Don't have an account? <a href="#">Signup</a></p>
+                <p>Don't have an account? <a href="/register">Signup</a></p>
             </div>
             <div class="social-login">
                 <button class="facebook-btn">Login with Facebook</button>

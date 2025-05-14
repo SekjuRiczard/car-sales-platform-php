@@ -33,5 +33,7 @@
         public function getAllAdvertisements(){
             
         }
+
+        
     }
 ?>

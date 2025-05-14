@@ -10,7 +10,6 @@ class AuthMiddleware{
         if (empty($_COOKIE['auth_token'])) {
             throw new Exception("Missing auth token");
         }
-
         $jwt       = $_COOKIE['auth_token'];
         $secretKey = $_ENV['JWT_SECRET'];
 

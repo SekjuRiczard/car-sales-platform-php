@@ -2,6 +2,7 @@
 session_start();
 require __DIR__ . '/../vendor/autoload.php';
 
+use App\Controllers\AccountDetailsController;
 use App\Middleware\AuthMiddleware;
 use Dotenv\Dotenv;
 
@@ -16,10 +17,12 @@ $router->map('GET', '/', 'HomeController@index', 'home');
 $router->map('GET', '/login', 'LoginController@index', 'login');
 $router->map('GET', '/register', 'RegisterController@index', 'register');
 $router->map('GET', '/dashboard', 'DashboardController@index', 'dashboard');
-$router->map('GET', '/logout', 'LogoutController@index', 'logout');
+$router->map('GET', '/accountDetails', 'AccountDetailsController@index', 'accountDetails');
+$router->map('GET', '/addAdvertisement', 'AdvertisementController@index', 'addAdvertisement');
 //Logowanie i rejestracja
 $router->map('POST','/login/auth','LoginController@loginUser','loginUser');
 $router->map('POST','/register/saveUser','RegisterController@saveUser','saveUser');
+$router->map('POST','/logout','AccountDetailsController@logoutUser','logout');
 //Zarzadzanie filrami
 $router->map('GET','/getCarBrands','DashboardController@getCarBrands','getCarBrands');
 $router->map('GET','/getCarModels/[i:id]','DashboardController@getCarModels','getCarModels');
@@ -28,13 +31,14 @@ $router->map('GET','/getModelGeneration/[i:id]','DashboardController@getModelGen
 $router->map('GET','/getAllAdvertisements','DashboardController@getAllAdvertisements','getAllAdvertisements');
 $match = $router->match();
 
+
+logThings();
+
+
 if ($match) {
    
-   
-
-   
     // trasy publiczne
-    $public = ['home','login','register','loginUser','saveUser'];
+    $public = ['home','login','register','loginUser','saveUser','getCarBrands'];
 
     // jeśli trasa *nie* jest publiczna → wymagamy ciasteczka
     if (!in_array($match['name'], $public, true)) {
@@ -63,4 +67,14 @@ if ($match) {
     header($_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
     echo "Strona nie znaleziona.";
 }
+
+function logThings(){
+    if(!empty($_SESSION['user'])){
+        foreach($_SESSION['user'] as $key=>$value){
+            error_log("Session user [$key]" . print_r($value ,true));
+        }
+    }
+  
+}
+
 ?>

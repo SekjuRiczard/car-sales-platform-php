@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -139,9 +140,11 @@
 
       <!-- Panel użytkownika (dla niezalogowanego) -->
       <div class="accountDetails">
-        <div class="accountDetailsGuest">
+        <div class="accountDetailsData">
           <span class="material-symbols-outlined icon">account_circle</span>
-          <a href="/login" class="loginButton">Log in</a>
+          <p id="userDataUsername">
+          <a href="/accountDetails">Menage Account</a>
+          </p>  
         </div>
       </div>
     </header>

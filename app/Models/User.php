@@ -60,7 +60,6 @@
                     'exp' => $issuedAt + 3600,
                     'userId' => $userId,
                     'username' => $username,
-                    'email' => $email
                 ];
         
                 $jwtSecret = $_ENV['JWT_SECRET'];
@@ -99,9 +98,8 @@
                     $payload = [
                         'iat' => $issuedAt,
                         'exp' => $issuedAt + 3600,
-                        'userId' => $userId,
-                        'username' => $user['username'],
-                        'email' => $user['email']
+                        'sub' => $userId,
+                        'username' => $user['username']
                     ];
                     $jwtSecret = $_ENV['JWT_SECRET'];
                     $jwt = JWT::encode($payload, $jwtSecret, 'HS256');

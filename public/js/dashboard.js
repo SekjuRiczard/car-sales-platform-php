@@ -4,18 +4,22 @@ const extraFilters   = document.getElementById('extraFilters');
 const brandsList     = document.getElementById('brand');
 const modelsList     = document.getElementById('model');
 const generationsList = document.getElementById('generation');
-
+const userDataUsername = document.getElementById('userDataUsername');
 // Ustawienie nazwy użytkownika z lokalnego storage
-document.getElementById('usernameContainer').textContent = localStorage.getItem('username');
+//document.getElementById('usernameContainer').textContent = localStorage.getItem('username');
 
 // Upewniamy się, że DOM został załadowany
 document.addEventListener('DOMContentLoaded', function() {
   loadCarBrands();
+  console.log("Załadowano dashboard.js");
 });
-
+console.log("Załadowano dashboard.js");
 // Funkcja pobierająca marki samochodów
 function loadCarBrands() {
-  fetch('/getCarBrands')
+  
+  fetch('/getCarBrands', {
+    credentials: 'include' // <-- kluczowe dla wysyłania ciastek!
+  })
     .then(response => response.json())
     .then(data => {
       console.log("Odpowiedź serwera:", data);

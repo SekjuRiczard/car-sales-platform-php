@@ -1,4 +1,4 @@
-const loginForm = document.getElementById('login-form');
+const loginForm = document.getElementById('loginForm');
 const messageDiv = document.getElementById('message');
 
 loginForm.addEventListener('submit', async (e) => {
@@ -7,6 +7,7 @@ loginForm.addEventListener('submit', async (e) => {
 
     try{
         const formData = new FormData(loginForm);
+        console.log("Form Data: ", Object.fromEntries(formData)); 
         const url = "/login/auth";
         const response = await fetch(url , {
             method: 'POST',
