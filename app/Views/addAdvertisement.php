@@ -54,29 +54,27 @@
           <label for="gearbox">Skrzynia biegów</label>
           <select id="gearbox" name="gearbox" required>
             <option value="">— wybierz —</option>
-            <option value="manual">Manualna</option>
-            <option value="automatic">Automatyczna</option>
-            <option value="semi-automatic">Półautomatyczna</option>
+            <option value="Manual">Manual</option>
+            <option value="Automatic">Automatic</option>
           </select>
         </div>
         <div class="form-group">
           <label for="condition">Stan pojazdu</label>
           <select id="condition" name="condition" required>
             <option value="">— wybierz —</option>
-            <option value="sprawny">Sprawny</option>
-            <option value="uszkodzony">Uszkodzony</option>
-            <option value="po-wypadku">Po wypadku</option>
-            <option value="do-odbudowy">Do odbudowy</option>
+            <option value="Drive Ready">Drive Ready</option>
+            <option value="Damaged">Damaged</option>
+            <option value="To Be Scrapped">To Be Scrapped</option>
           </select>
         </div>
         <div class="form-group">
           <label for="fuel">Paliwo</label>
           <select id="fuel" name="fuel" required>
             <option value="">— wybierz —</option>
-            <option value="petrol">Benzyna</option>
-            <option value="diesel">Diesel</option>
-            <option value="electric">Elektryczny</option>
-            <option value="hybrid">Hybryda</option>
+            <option value="Petrol">Petrol</option>
+            <option value="Diesel">Diesel</option>
+            <option value="Electric">Electric</option>
+            <option value="Hybrid">Hybrid</option>
           </select>
         </div>
       </div>
@@ -86,29 +84,33 @@
           <label for="body">Nadwozie</label>
           <select id="body" name="body" required>
             <option value="">— wybierz —</option>
-            <option value="sedan">Sedan</option>
-            <option value="hatchback">Hatchback</option>
-            <option value="kombi">Kombi</option>
-            <option value="suv">SUV</option>
-            <option value="coupe">Coupe</option>
-            <option value="van">Van</option>
+            <option value="Sedan">Sedan</option>
+            <option value="Hatchback">Hatchback</option>
+            <option value="Combi">Combi</option>
+            <option value="Suv">SUV</option>
+            <option value="Coupe">Coupe</option>
+            <option value="Cabrio">Cabrio</option>
           </select>
         </div>
-        <div class="form-group">
-          <label for="brand">Marka</label>
-          <input type="text" id="brand" name="brand" required />
-          <!-- lub dynamiczne <select> -->
-        </div>
-        <div class="form-group">
-          <label for="generation">Generacja</label>
-          <input type="text" id="generation" name="generation" />
-          <!-- lub dynamiczne <select> -->
-        </div>
+        <select name="car_brand" id="brand">
+        <option value="" disabled selected hidden>Brand</option>
+        <!-- Dalsze opcje ładujesz w JS (loadCarBrands) lub statycznie -->
+        </select>
+
+        <!-- Model -->
+        <select name="model_id" id="model">
+          <option value="" disabled selected hidden>Model</option>
+        </select>
+
+        <!-- GENERATION -->
+        <select name="car_generation" id="generation">
+          <option value="" disabled selected hidden>Generation</option>
+        </select>
       </div>
 
       <!-- Upload zdjęć -->
       <div class="form-group">
-        <label for="images">Zdjęcia (max 10)</label>
+        <label for="images">Photos</label>
         <input 
           type="file" 
           id="images" 
@@ -117,15 +119,15 @@
           multiple 
           data-max-files="10"
         />
-        <small>Wybierz do 10 zdjęć</small>
       </div>
 
       <div class="form-actions">
-        <button type="submit" class="btn submit-btn">Zapisz ogłoszenie</button>
+        <button type="submit" class="btn submit-btn">Add advertisement</button>
         <button type="reset" class="btn reset-btn">Wyczyść</button>
       </div>
 
     </form>
   </div>
+  <script type="module" src="js/addAdvertisement.js"></script>
 </body>
 </html>

@@ -29,6 +29,8 @@ $router->map('GET','/getCarModels/[i:id]','DashboardController@getCarModels','ge
 $router->map('GET','/getModelGeneration/[i:id]','DashboardController@getModelGenerations','getCarGenerations');
 //Pobieranie ogloszen
 $router->map('GET','/getAllAdvertisements','DashboardController@getAllAdvertisements','getAllAdvertisements');
+//Dodawanie ogloszen
+$router->map('POST','/advertisement/create','AdvertisementController@createAdvertisement','createAdvertisement');
 $match = $router->match();
 
 
@@ -38,7 +40,7 @@ logThings();
 if ($match) {
    
     // trasy publiczne
-    $public = ['home','login','register','loginUser','saveUser','getCarBrands'];
+    $public = ['home','login','register','loginUser','saveUser'];
 
     // jeśli trasa *nie* jest publiczna → wymagamy ciasteczka
     if (!in_array($match['name'], $public, true)) {

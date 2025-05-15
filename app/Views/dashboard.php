@@ -128,7 +128,7 @@
         <!-- Przycisk dodania ogłoszenia -->
         <div class="advertisementButton">
           <span class="material-symbols-outlined">campaign</span>
-          <p>Add advertisement</p>
+          <a href="/addAdvertisement"><p>Add advertisement</p></a>
         </div>
 
         <!-- Przełącznik motywów -->
@@ -307,6 +307,6 @@
     <footer></footer>
 
     <!-- Skrypty JS -->
-    <script src="js/dashboard.js"></script>
+    <script type="module" src="js/dashboard.js"></script>
   </body>
 </html>
